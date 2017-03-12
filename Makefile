@@ -1,17 +1,19 @@
-haml = $(shell find . -type f -name '*.haml')
 md = $(shell find . -type f -name '*.md')
-html = $(patsubst %.md, %.html, $(md)) $(patsubst %.haml, %.html, $(haml))
+frag = $(patsubst %.md, %.frag, $(md))
+slim = $(patsubst %.md, %.slim, $(md))
+html = $(patsubst %.md, %.html, $(md))
 
 styl = $(shell find . -type f -name '*.styl')
 css = $(patsubst %.styl, %.css, $(styl))
 
 default: $(html) $(css)
 
-%.html: %.haml Makefile
-	haml $< $@
+%.html: %.frag template.slim Makefile
+	slimrb template.slim <$< >$@ && \
+	html-minifier $@ >$@
 
-%.html: %.md Makefile
-	pandoc -s $< -f markdown -t html5 -o $@
+%.frag: %.md Makefile
+	pandoc $< -f markdown -t html5 -o $@
 
 %.css: %.styl Makefile
 	stylus <$< >$@
