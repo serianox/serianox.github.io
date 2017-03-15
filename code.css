@@ -1,0 +1,151 @@
+code {
+  white-space: pre;
+}
+div.sourceCode {
+  overflow-x: auto;
+}
+table.sourceCode,
+tr.sourceCode,
+td.lineNumbers,
+td.sourceCode {
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  border: none;
+}
+table.sourceCode {
+  width: 100%;
+  line-height: 100%;
+}
+td.lineNumbers {
+  text-align: right;
+  padding-right: 4px;
+  padding-left: 4px;
+  color: #aaa;
+  border-right: 1px solid #aaa;
+}
+td.sourceCode {
+  padding-left: 5px;
+}
+/* Keyword */
+code > span.kw {
+  color: #007020;
+  font-weight: bold;
+}
+/* DataType */
+code > span.dt {
+  color: #902000;
+}
+/* DecVal */
+code > span.dv {
+  color: #40a070;
+}
+/* BaseN */
+code > span.bn {
+  color: #40a070;
+}
+/* Float */
+code > span.fl {
+  color: #40a070;
+}
+/* Char */
+code > span.ch {
+  color: #4070a0;
+}
+/* String */
+code > span.st {
+  color: #4070a0;
+}
+/* Comment */
+code > span.co {
+  color: #60a0b0;
+  font-style: italic;
+}
+/* Other */
+code > span.ot {
+  color: #007020;
+}
+/* Alert */
+code > span.al {
+  color: #f00;
+  font-weight: bold;
+}
+/* Function */
+code > span.fu {
+  color: #06287e;
+}
+/* Error */
+code > span.er {
+  color: #f00;
+  font-weight: bold;
+}
+/* Warning */
+code > span.wa {
+  color: #60a0b0;
+  font-weight: bold;
+  font-style: italic;
+}
+/* Constant */
+code > span.cn {
+  color: #800;
+}
+/* SpecialChar */
+code > span.sc {
+  color: #4070a0;
+}
+/* VerbatimString */
+code > span.vs {
+  color: #4070a0;
+}
+/* SpecialString */
+/* Import */
+code > span.ss {
+  color: #b68;
+}
+/* Variable */
+code > span.va {
+  color: #19177c;
+}
+/* ControlFlow */
+code > span.cf {
+  color: #007020;
+  font-weight: bold;
+}
+/* Operator */
+/* BuiltIn */
+/* Extension */
+code > span.op {
+  color: #666;
+}
+/* Preprocessor */
+code > span.pp {
+  color: #bc7a00;
+}
+/* Attribute */
+code > span.at {
+  color: #7d9029;
+}
+/* Documentation */
+code > span.do {
+  color: #ba2121;
+  font-style: italic;
+}
+/* Annotation */
+code > span.an {
+  color: #60a0b0;
+  font-weight: bold;
+  font-style: italic;
+}
+/* CommentVar */
+code > span.cv {
+  color: #60a0b0;
+  font-weight: bold;
+  font-style: italic;
+}
+/* Information */
+code > span.in {
+  color: #60a0b0;
+  font-weight: bold;
+  font-style: italic;
+}
+
