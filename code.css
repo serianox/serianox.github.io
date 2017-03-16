@@ -1,151 +1,115 @@
+pre,
 code {
+  display: block;
+  background: #000;
+  color: #eee;
+  line-height: 1.5;
+  border-radius: 10px;
+  padding: 10px;
   white-space: pre;
-}
-div.sourceCode {
   overflow-x: auto;
 }
-table.sourceCode,
-tr.sourceCode,
-td.lineNumbers,
-td.sourceCode {
-  margin: 0;
-  padding: 0;
-  vertical-align: baseline;
-  border: none;
+.hemisu-black,
+.hemisu-bg {
+  color: #000;
 }
-table.sourceCode {
-  width: 100%;
-  line-height: 100%;
+.hemisu-white {
+  color: #fff;
 }
-td.lineNumbers {
-  text-align: right;
-  padding-right: 4px;
-  padding-left: 4px;
-  color: #aaa;
-  border-right: 1px solid #aaa;
+.hemisu-almostWhite,
+.hemisu-norm {
+  color: #eee;
 }
-td.sourceCode {
-  padding-left: 5px;
+.hemisu-almostBlack,
+.hemisu-faint {
+  color: #111;
 }
-/* Keyword */
-code > span.kw {
-  color: #007020;
-  font-weight: bold;
-}
-/* DataType */
-code > span.dt {
-  color: #902000;
-}
-/* DecVal */
-code > span.dv {
-  color: #40a070;
-}
-/* BaseN */
-code > span.bn {
-  color: #40a070;
-}
-/* Float */
-code > span.fl {
-  color: #40a070;
-}
-/* Char */
-code > span.ch {
-  color: #4070a0;
-}
-/* String */
-code > span.st {
-  color: #4070a0;
-}
-/* Comment */
+.hemisu-middleDarkGrey,
+.hemisu-comment,
 code > span.co {
-  color: #60a0b0;
-  font-style: italic;
+  color: #777;
 }
-/* Other */
-code > span.ot {
-  color: #007020;
+.hemisu-middleLightGrey,
+.hemisu-dimmed,
+code > span.do {
+  color: #999;
 }
-/* Alert */
-code > span.al {
-  color: #f00;
-  font-weight: bold;
+.hemisu-lightGrey {
+  color: #bbb;
+}
+.hemisu-darkGrey,
+.hemisu-subtle {
+  color: #444;
+}
+.hemisu-darkPink,
+.hemisu-faintRed,
+code > span.al,
+code > span.er,
+code > span.wa {
+  color: #63001c;
+}
+.hemisu-middleDarkPink {
+  color: #f05;
+}
+.hemisu-middleLightPink,
+.hemisu-normRed {
+  color: #d65e76;
+}
+.hemisu-lightPink {
+  color: #ffafaf;
+}
+.hemisu-darkBlue,
+.hemisu-faintBlue {
+  color: #005f87;
+}
+.hemisu-middleDarkBlue {
+  color: #538192;
+}
+.hemisu-middleLightBlue,
+.hemisu-accent1,
+.hemisu-normBlue,
+code > span.dv,
+code > span.bn,
+code > span.fl,
+code > span.cn,
+code > span.pp {
+  color: #9fd3e6;
+}
+.hemisu-lightBlue {
+  color: #cbe4ee;
+}
+.hemisu-darkGreen,
+.hemisu-faintGreen {
+  color: #5f5f00;
+}
+.hemisu-middleDarkGreen {
+  color: #739200;
+}
+.hemisu-middleLightGreen,
+.hemisu-accent2,
+.hemisu-normGreen,
+code > span.ch,
+code > span.st,
+code > span.sc,
+code > span.vs,
+code > span.im,
+code > span.ss {
+  color: #b1d631;
+}
+.hemisu-lightGreen,
+.hemisu-accent3,
+code > span.kw,
+code > span.cf,
+code > span.ot,
+code > span.dt {
+  color: #bfa;
+}
+.hemisu-darkTan {
+  color: #503d15;
+}
+.hemisu-lightTan,
+.hemisu-accent4 {
+  color: #ece1c8;
 }
 /* Function */
-code > span.fu {
-  color: #06287e;
-}
-/* Error */
-code > span.er {
-  color: #f00;
-  font-weight: bold;
-}
-/* Warning */
-code > span.wa {
-  color: #60a0b0;
-  font-weight: bold;
-  font-style: italic;
-}
-/* Constant */
-code > span.cn {
-  color: #800;
-}
-/* SpecialChar */
-code > span.sc {
-  color: #4070a0;
-}
-/* VerbatimString */
-code > span.vs {
-  color: #4070a0;
-}
-/* SpecialString */
-/* Import */
-code > span.ss {
-  color: #b68;
-}
-/* Variable */
-code > span.va {
-  color: #19177c;
-}
-/* ControlFlow */
-code > span.cf {
-  color: #007020;
-  font-weight: bold;
-}
-/* Operator */
-/* BuiltIn */
-/* Extension */
-code > span.op {
-  color: #666;
-}
-/* Preprocessor */
-code > span.pp {
-  color: #bc7a00;
-}
-/* Attribute */
-code > span.at {
-  color: #7d9029;
-}
-/* Documentation */
-code > span.do {
-  color: #ba2121;
-  font-style: italic;
-}
-/* Annotation */
-code > span.an {
-  color: #60a0b0;
-  font-weight: bold;
-  font-style: italic;
-}
-/* CommentVar */
-code > span.cv {
-  color: #60a0b0;
-  font-weight: bold;
-  font-style: italic;
-}
-/* Information */
-code > span.in {
-  color: #60a0b0;
-  font-weight: bold;
-  font-style: italic;
-}
 
