@@ -16,3 +16,5 @@ default: $(html)
 
 %.css: %.styl Makefile
 	stylus <$< >$@
+
+.PRECIOUS: %.css
