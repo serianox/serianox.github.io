@@ -8,8 +8,8 @@ css = $(patsubst %.styl, %.css, $(styl))
 default: $(html)
 
 %.html: %.frag template.slim style.css Makefile
-	slimrb template.slim <$< >$@
-	#html-minifier $@ >$@
+	slimrb template.slim /dev/stdout $< style.css |\
+	html-minifier >$@
 
 %.frag: %.md Makefile
 	pandoc $< -f markdown -t html5 -o $@
@@ -19,6 +19,5 @@ style.css: $(css) Makefile
 
 %.css: %.styl Makefile
 	stylus <$< >$@
-	#cleancss -O2 $@
 
-.PRECIOUS: %.css
+.PRECIOUS: %.css %.frag
