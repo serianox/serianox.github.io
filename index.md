@@ -7,3 +7,8 @@ int main(void)
   return 0;
 }
 ```
+```rust
+fn main() {
+    println!("Hello, world!");
+}
+```

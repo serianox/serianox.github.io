@@ -5,10 +5,10 @@ html = $(patsubst %.md, %.html, $(md))
 styl = $(shell find . -type f -name '*.styl')
 css = $(patsubst %.styl, %.css, $(styl))
 
-default: $(html)
+default: $(html) style.css
 
-%.html: %.frag template.slim style.css Makefile
-	slimrb template.slim /dev/stdout $< style.css |\
+%.html: %.frag template.slim Makefile
+	slimrb template.slim /dev/stdout <$< style.css |\
 	html-minifier >$@
 
 %.frag: %.md Makefile
@@ -19,5 +19,3 @@ style.css: $(css) Makefile
 
 %.css: %.styl Makefile
 	stylus <$< >$@
-
-.PRECIOUS: %.css %.frag

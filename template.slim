@@ -6,7 +6,6 @@ head
   meta name="author" content=""
   meta name="keywords" content=""
   meta name="viewport" content="width=device-width, initial-scale=1.0"
-  style type="text/css"
-    == File.read ARGV[3]
+  link rel="stylesheet" type="text/css" href="/style.css"
 body
-  == File.read ARGV[2]
+  == STDIN.read
