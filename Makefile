@@ -15,7 +15,7 @@ default: $(html) style.css
 	pandoc $< -f markdown -t html5 -o $@
 
 style.css: $(css.frag) Makefile
-	cleancss -O2 $(filter %.css, $^) >$@
+	cleancss -O2 $(filter %.css.frag, $^) >$@
 
 %.css.frag: %.styl Makefile
 	stylus <$< >$@
