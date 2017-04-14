@@ -5,7 +5,7 @@ html = $(patsubst %.md, %.html, $(md))
 styl = $(shell find . -type f -name '*.styl')
 css.frag = $(patsubst %.styl, %.css.frag, $(styl))
 
-default: $(html) style.css
+all: $(html) style.css ## Build all the files
 
 %.html: %.html.frag template.slim Makefile
 	slimrb template.slim /dev/stdout <$< style.css |\
@@ -19,3 +19,9 @@ style.css: $(css.frag) Makefile
 
 %.css.frag: %.styl Makefile
 	stylus <$< >$@
+
+.PHONY: help
+.DEFAULT_GOAL := help
+
+help: ## Show the list of targets
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
