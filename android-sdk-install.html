@@ -1,0 +1,19 @@
+<!DOCTYPE html><head><meta charset="utf-8"><title>Title</title><meta content="" name="description"><meta content="" name="author"><meta content="" name="keywords"><meta content="width=device-width,initial-scale=1" name="viewport"><link href="/style.css" rel="stylesheet" type="text/css"></head><body><h1 id="android-headless-sdk-installation">Android <em>headless</em> SDK installation</h1>
+<p>I wanted to install <em>Android SDK</em> without installing this ugly IDE. The main goal was to rebuild existing projects, so I didn't need something as heavy. The main difficulty came when I downloaded the actual sdk, and receive the following message from Google.</p>
+<blockquote>
+<p>Because you've downloaded the command line tools (not Android Studio), there are no install instructions.</p>
+</blockquote>
+<p>First things first. The SDK can be easily found on the download page of the Android developer website. Hidden at the end of the page in a section named <em><a href="https://developer.android.com/studio/index.html#command-tools">Get just the command line tools</a></em>.</p>
+<p>We download a <code>.zip</code> file, because it's to complicated to provide a tarball, and unzip it somewhere, preferably <code>~/.android</code>.</p>
+<p>Then we update your <code>~/.profile</code>, or wherever we put your env to include the following lines <em>mutatis mutandis</em> and reload our session.</p>
+<pre><code>export ANDROID_HOME=&quot;$HOME/.android&quot;
+export PATH=&quot;$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH&quot;</code></pre>
+<p>Once we're here, the installation is straightforward once we now which command to run.</p>
+<pre><code>android update sdk</code></pre>
+<p>Then we must install some build tools.</p>
+<pre><code>sdkmanager &quot;platforms;android-23&quot;
+sdkmanager &quot;build-tools;23.0.1&quot;</code></pre>
+<p>And also we must not forget to install all those <code>compat</code> libraries.</p>
+<pre><code>sdkmanager &quot;extras;android;m2repository&quot;</code></pre>
+<p>And <em>voilà</em>!</p>
+</body>
