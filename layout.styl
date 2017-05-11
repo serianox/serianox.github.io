@@ -1,6 +1,32 @@
+html
+  text-align justify
+
+h1
+h2
+h3
+h4
+h5
+h6
+  text-align left
+
+html
+  text-indent 1em
+
+code
+  text-indent 0em
+
+blockquote
+  text-indent -1em
+
+blockquote > p:before
+  content '“ '
+
+blockquote > p:after
+  content ' ”'
+
 ul > li
   list-style none
   text-indent -2em
 
 ul > li:before
-  content '➢  '
+  content '➢ '
