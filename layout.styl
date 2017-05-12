@@ -9,24 +9,27 @@ h5
 h6
   text-align left
 
-html
+p
   text-indent 1em
 
+h1 + p
+h2 + p
+h3 + p
 code
   text-indent 0em
 
-blockquote
-  text-indent -1em
+blockquote > p
+  text-indent -.5em
 
 blockquote > p:before
-  content '“ '
+  content '“'
 
 blockquote > p:after
-  content ' ”'
+  content '”'
 
 ul > li
   list-style none
   text-indent -2em
 
 ul > li:before
-  content '➢ '
+  content '– '
