@@ -1,4 +1,4 @@
-<!DOCTYPE html><head><meta charset="utf-8"><title>Title</title><meta content="" name="description"><meta content="" name="author"><meta content="" name="keywords"><meta content="width=device-width,initial-scale=1" name="viewport"><link href="/style.css" rel="stylesheet" type="text/css"></head><body><h1 id="android-headless-sdk-installation">Android <em>headless</em> SDK installation</h1>
+<!DOCTYPE html><head><meta charset="utf-8"><title>make index.html</title><meta content="" name="description"><meta content="" name="author"><meta content="" name="keywords"><meta content="width=device-width,initial-scale=1" name="viewport"><link href="/style.css" rel="stylesheet" type="text/css"></head><body><h1 id="android-headless-sdk-installation">Android <em>headless</em> SDK installation</h1>
 <p>I wanted to install <em>Android SDK</em> without installing this ugly IDE. The main goal was to rebuild existing projects, so I didn't need something as heavy. The main difficulty came when I downloaded the actual sdk, and receive the following message from Google.</p>
 <blockquote>
 <p>Because you've downloaded the command line tools (not Android Studio), there are no install instructions.</p>
@@ -6,14 +6,14 @@
 <p>First things first. The SDK can be easily found on the download page of the Android developer website. Hidden at the end of the page in a section named <em><a href="https://developer.android.com/studio/index.html#command-tools">Get just the command line tools</a></em>.</p>
 <p>We download a <code>.zip</code> file, because it's to complicated to provide a tarball, and unzip it somewhere, preferably <code>~/.android</code>.</p>
 <p>Then we update your <code>~/.profile</code>, or wherever we put your env to include the following lines <em>mutatis mutandis</em> and reload our session.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">export</span> <span class="ot">ANDROID_HOME=</span><span class="st">&quot;</span><span class="ot">$HOME</span><span class="st">/.android&quot;</span>
-<span class="kw">export</span> <span class="ot">PATH=</span><span class="st">&quot;</span><span class="ot">$ANDROID_HOME</span><span class="st">/tools:</span><span class="ot">$ANDROID_HOME</span><span class="st">/platform-tools:</span><span class="ot">$PATH</span><span class="st">&quot;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">export</span> <span class="va">ANDROID_HOME=</span><span class="st">&quot;</span><span class="va">$HOME</span><span class="st">/.android&quot;</span>
+<span class="bu">export</span> <span class="va">PATH=</span><span class="st">&quot;</span><span class="va">$ANDROID_HOME</span><span class="st">/tools:</span><span class="va">$ANDROID_HOME</span><span class="st">/platform-tools:</span><span class="va">$PATH</span><span class="st">&quot;</span></code></pre></div>
 <p>Once we're here, the installation is straightforward once we now which command to run.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">android</span> update sdk</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">android</span> update sdk</code></pre></div>
 <p>Then we must install some build tools.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sdkmanager</span> <span class="st">&quot;platforms;android-23&quot;</span>
-<span class="kw">sdkmanager</span> <span class="st">&quot;build-tools;23.0.1&quot;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">sdkmanager</span> <span class="st">&quot;platforms;android-23&quot;</span>
+<span class="ex">sdkmanager</span> <span class="st">&quot;build-tools;23.0.1&quot;</span></code></pre></div>
 <p>And also we must not forget to install all those <code>compat</code> libraries.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sdkmanager</span> <span class="st">&quot;extras;android;m2repository&quot;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">sdkmanager</span> <span class="st">&quot;extras;android;m2repository&quot;</span></code></pre></div>
 <p>And <em>voilà</em>!</p>
 </body>
