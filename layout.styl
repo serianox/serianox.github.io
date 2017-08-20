@@ -30,7 +30,24 @@ blockquote > p:after
 
 ul > li
   list-style none
-  text-indent -2em
 
 ul > li:before
-  content '– '
+  content '– '
+
+ol
+  list-style-type none
+
+ol:first-of-type
+  counter-reset listitem
+
+li:before
+  display inline-block
+  content counter(listitem)'. '
+  counter-increment listitem
+
+ol ol:first-of-type
+  counter-reset sublistitem
+
+ol ol li:before
+  content counter(listitem)'.'counter(sublistitem)'. '
+  counter-increment sublistitem
