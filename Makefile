@@ -9,7 +9,7 @@ all: $(html) style.css ## Build all the files
 
 %.html: %.html.frag template.slim
 	slimrb template.slim /dev/stdout <$< style.css |\
-	html-minifier >$@
+	html-minifier --config-file html-minifier.conf >$@
 
 %.html.frag: %.md
 	pandoc $< -f markdown -t html5 -o $@
