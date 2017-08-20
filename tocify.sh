@@ -13,7 +13,8 @@ rm "$tmpfile"
 " "\
 "["`<$fname grep -oP "^# \K(.*)"`"]"\
 "(${fname/%.md/.html})"\
-""
+" "\
+`<$fname sed '3q;d' `
 done) |sort -r
 
 <"$1" sed -n 'H; /<!-- TOC -->/h; ${g;p;}')>$tmpfile
