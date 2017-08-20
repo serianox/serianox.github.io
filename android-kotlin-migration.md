@@ -1,4 +1,4 @@
-# Manually migrating an Android project to Kotlin
+# Manually migrating an Android project to Kotlin
 
 Kotlin is now officialy part of the Android SDK[^1], and as such I wanted to give it another try. There are of course tutorials out there[^2], but they all aim users of Android Studio. Let's see how we can do without.
 
