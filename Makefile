@@ -7,7 +7,7 @@ css.frag = $(patsubst %.styl, %.css.frag, $(styl))
 
 all: $(html) style.css ## Build all the files
 
-%.html: %.html.frag template.slim html-minifier.conf
+%.html: %.html.frag style.css template.slim html-minifier.conf
 	slimrb template.slim /dev/stdout <$< style.css |\
 	html-minifier --config-file html-minifier.conf >$@
 
