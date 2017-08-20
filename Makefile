@@ -23,7 +23,7 @@ style.css: $(css.frag)
 %.css.frag: %.styl
 	stylus <$< >$@
 
-.PHONY: help index.md
+.PHONY: help
 .DEFAULT_GOAL := all
 
 help: ## Show the list of targets
