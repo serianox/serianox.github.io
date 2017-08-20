@@ -7,23 +7,23 @@ css.frag = $(patsubst %.styl, %.css.frag, $(styl))
 
 all: $(html) style.css ## Build all the files
 
-%.html: %.html.frag template.slim Makefile
+%.html: %.html.frag template.slim
 	slimrb template.slim /dev/stdout <$< style.css |\
 	html-minifier >$@
 
-%.html.frag: %.md Makefile
+%.html.frag: %.md
 	pandoc $< -f markdown -t html5 -o $@
 
-toc.md:
-	./tocify.sh >$@
+index.md: $(md)
+	./tocify.sh $@
 
-style.css: $(css.frag) Makefile
+style.css: $(css.frag)
 	cleancss -O2 $(filter %.css.frag, $^) >$@
 
-%.css.frag: %.styl Makefile
+%.css.frag: %.styl
 	stylus <$< >$@
 
-.PHONY: help toc.md
+.PHONY: help index.md
 .DEFAULT_GOAL := all
 
 help: ## Show the list of targets

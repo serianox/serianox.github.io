@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-echo "# Table of Contents"
+tmpfile=$(mktemp)
+exec 3>"$tmpfile"
+rm "$tmpfile"
+
+(<"$1" sed '/<!-- TOC -->/q'
 
 (for fname in `find * -name "*.md"`; do
     echo \
@@ -11,3 +15,7 @@ echo "# Table of Contents"
 "(${fname/%.md/.html})"\
 ""
 done) |sort -r
+
+<"$1" sed -n 'H; /<!-- TOC -->/h; ${g;p;}')>$tmpfile
+
+mv "$tmpfile" "$1"
