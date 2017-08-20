@@ -14,13 +14,16 @@ all: $(html) style.css ## Build all the files
 %.html.frag: %.md Makefile
 	pandoc $< -f markdown -t html5 -o $@
 
+toc.md:
+	./tocify.sh >$@
+
 style.css: $(css.frag) Makefile
 	cleancss -O2 $(filter %.css.frag, $^) >$@
 
 %.css.frag: %.styl Makefile
 	stylus <$< >$@
 
-.PHONY: help
+.PHONY: help toc.md
 .DEFAULT_GOAL := all
 
 help: ## Show the list of targets
