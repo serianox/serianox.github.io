@@ -1,27 +1,30 @@
 md = $(shell find . -type f -name '*.md')
-html.frag = $(patsubst %.md, %.html.frag, $(md))
 html = $(patsubst %.md, %.html, $(md))
 
 styl = $(shell find . -type f -name '*.styl')
-css.frag = $(patsubst %.styl, %.css.frag, $(styl))
 
-all: $(html) style.css ## Build all the files
+all: $(html) ## Build all the files
 
-%.html: %.html.frag style.css template.slim html-minifier.conf
-	slimrb template.slim /dev/stdout <$< style.css |\
+%.html: %.html.frag %.css template.slim html-minifier.conf
+	slimrb template.slim /dev/stdout <$< $(word 2, $^) |\
 	html-minifier --config-file html-minifier.conf >$@
+
+%.css: %.html.plain style.css.frag
+	purifycss $(word 2, $^) $< --min --out=$@
+
+%.html.plain: %.html.frag template.slim
+	slimrb $(word 2, $^) /dev/stdout <$< /dev/null >$@
 
 %.html.frag: %.md
 	pandoc $< -f markdown -t html5 -o $@
 
-index.md: $(md) tocify.sh
+index.md: $(md)
 	./tocify.sh $@
 
-style.css: $(css.frag)
-	cleancss -O2 $(filter %.css.frag, $^) >$@
-
-%.css.frag: %.styl
-	stylus <$< >$@
+style.css.frag: $(styl)
+	cat $^ |\
+	stylus |\
+	cleancss -O2 >$@
 
 .PHONY: help
 .DEFAULT_GOAL := all
