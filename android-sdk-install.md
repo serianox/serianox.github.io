@@ -12,7 +12,7 @@ Then we update your `~/.profile`, or wherever we put your env to include the fol
 
 ```bash
 export ANDROID_HOME="$HOME/.android"
-export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
+export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH"
 ```
 
 Once we're here, the installation is straightforward once we now which command to run.
