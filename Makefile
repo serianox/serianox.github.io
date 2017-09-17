@@ -10,7 +10,7 @@ all: $(html) ## Build all the files
 	html-minifier --config-file html-minifier.conf >$@
 
 %.css: %.plain.html style.css
-	purifycss -r $(word 2, $^) $< --min --out=$@
+	purifycss $(word 2, $^) $< --min --out=$@
 
 %.plain.html: %.frag.html /dev/null template.slim
 	slimrb $(word 3, $^) /dev/stdout <$< $(word 2, $^) >$@
@@ -23,7 +23,7 @@ index.md: $(filter-out ./index.md, $(md))
 
 style.css: $(styl)
 	cat $^ |\
-	stylus |\
+	stylus -c |\
 	cleancss -O2 >$@
 
 .PRECIOUS: %.plain.html %.frag.html %.css
