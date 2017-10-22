@@ -3,7 +3,7 @@
 
 
 <!-- TOC -->
-*  [Ubuntu `dist-upgrade` aftermath](ubuntu-dist-upgradei-aftermath.html)
+* 2017-10-22 [Ubuntu `dist-upgrade` aftermath](ubuntu-dist-upgrade-aftermath.html)
 
 I wanted to upgrade my laptop from _Ubuntu Zeisty Zapus_ (17.04) to _Ubuntu Artful Aardvak_ (17.10). The process is usually pretty straightforward, and I am now lazy enough to do it from the gui. I started the upgrade and locked my computer as I left.
 
