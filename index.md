@@ -3,6 +3,10 @@
 
 
 <!-- TOC -->
+*  [Ubuntu `dist-upgrade` aftermath](ubuntu-dist-upgradei-aftermath.html)
+
+I wanted to upgrade my laptop from _Ubuntu Zeisty Zapus_ (17.04) to _Ubuntu Artful Aardvak_ (17.10). The process is usually pretty straightforward, and I am now lazy enough to do it from the gui. I started the upgrade and locked my computer as I left.
+
 * 2017-08-13 [Using _Gadget Filesystem_ under _Ubuntu_](gadgetfs-ubuntu.html)
 
 I wanted to emulate a USB device in Linux for testing purpose. This can be done easily using the [Gadget API](http://www.linux-usb.org/gadget/). However I quickly discovered that this feature was [not present in Ubuntu](https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1073089), even in the form of a kernel module in _linux-extra_. The only solution remaining was to rebuild the missing kernel module manually.
