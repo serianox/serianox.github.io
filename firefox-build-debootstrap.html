@@ -1,0 +1,18 @@
+<!doctype html><meta charset=utf-8><title>make index.html</title><meta content="" name=description><meta content="" name=author><meta content="" name=keywords><meta content="width=device-width,initial-scale=1" name=viewport><style>html{text-align:justify;hyphens:auto;font-family:Georgia,serif;hyphens:auto;text-rendering:optimizeLegibility}p{text-indent:1em}code,h1+p,h2+p,h3+p{text-indent:0}h1,h2,h3,h4,h5,h6{text-align:left;font-family:"Lucida Sans Unicode","Lucida Grande",sans-serif}code,pre{font-family:"Lucida Console",Monaco,courier,monospace}pre>code{display:block;background:#000;color:#eee;line-height:1.5;border-radius:5px;padding:5px;white-space:pre;overflow-x:auto}h1,h2,h3,h4,h5,h6{color:#494e6b}a,html{color:#98878f}html{color:#bbb;background:#192231}</style><h1 id=building-firefox-in-a-chroot>Building Firefox in a chroot</h1><p>Something I don't like is project with tons of build dependencies. They tend to stay and pollute the system. Something I don't like even more are containers.<p>Let's work with old school chroot.<h2 id=installing-dependencies>Installing dependencies</h2><pre><code>sudo aptitude install debootstrap schroot</code></pre><h2 id=installing-an-image>Installing an image</h2><p>A recent version of Ubuntu is enough.<pre><code>sudo debootstrap --variant=buildd arch=amd64 artful /srv/chroot/firefox-chroot http://archive.ubuntu.com/ubuntu/</code></pre><h2 id=configuring-and-starting-the-chroot>Configuring and starting the chroot</h2><pre><code>cat &lt;&lt;EOF > /etc/schroot/chroot.d/firefox.conf
+[firefox]
+description=Firefox
+directory=/srv/chroot/firefox-chroot
+users=user1
+root-users=user1
+type=directory
+EOF</code></pre><p>We need to enable write access to shared memory, else the build configuration tool will fail.<pre><code>cat &lt;&lt;EOF >> /etc/schroot/default/fstab
+/dev/shm        /dev/shm        none    rw,bind         0       0
+EOF</code></pre><h2 id=configuring-the-image>Configuring the image</h2><p>The list of sources is missing some lines, so we must add them before installing dependencies. Moreover, the Firefox bootstrap forget to install Clang.<pre><code>cat &lt;&lt;EOF >> /srv/chroot/firefox-chroot/etc/apt/sources.list
+deb http://fr.archive.ubuntu.com/ubuntu/ artful-updates main restricted
+deb http://fr.archive.ubuntu.com/ubuntu/ artful universe
+deb http://fr.archive.ubuntu.com/ubuntu/ artful-updates universe
+EOF
+sudo schroot -c firefox
+apt-get update
+apt-get install python clang
+exit</code></pre><h2 id=starting-the-chroot> Starting the chroot</h2><pre><code>schroot -c firefox</code></pre><p>Now you can follow the <a href=https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Build_Instructions/Simple_Firefox_build/Linux_and_MacOS_build_preparation>official build steps</a>.
