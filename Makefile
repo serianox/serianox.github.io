@@ -9,13 +9,13 @@ all: $(html) ## Build all the files
 	html-minifier $< --config-file html-minifier.conf --output=$@
 
 %.max.html: %.frag.html %.css template.slim
-	slimrb $(word 3, $^) /dev/stdout <$< $(word 2, $^) >$@
+	slimrb $(word 3, $^) /dev/stdout $< $(word 2, $^) $(patsubst %.max.html, %.html, $@) >$@
 
 %.css: %.plain.html style.css
 	purifycss $(word 2, $^) $< --min --out=$@
 
 %.plain.html: %.frag.html /dev/null template.slim
-	slimrb $(word 3, $^) /dev/stdout <$< $(word 2, $^) >$@
+	slimrb $(word 3, $^) /dev/stdout $< $(word 2, $^) "" >$@
 
 %.frag.html: %.md
 	pandoc $< -f markdown -t html5 -o $@
