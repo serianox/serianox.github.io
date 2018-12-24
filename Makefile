@@ -3,19 +3,11 @@ html = $(patsubst %.md, %.html, $(md))
 
 styl = $(shell find . -type f -name '*.styl')
 
-all: $(html) ## Build all the files
+all: $(html) style.css ## Build all the files
 
-%.html: %.max.html html-minifier.conf
-	html-minifier $< --config-file html-minifier.conf --output=$@
-
-%.max.html: %.frag.html %.css template.slim
-	slimrb $(word 3, $^) /dev/stdout $< $(word 2, $^) $(patsubst %.max.html, %.html, $@) >$@
-
-%.css: %.plain.html style.css
-	purifycss $(word 2, $^) $< --min --out=$@
-
-%.plain.html: %.frag.html /dev/null template.slim
-	slimrb $(word 3, $^) /dev/stdout $< $(word 2, $^) "" >$@
+%.html: %.frag.html template.slim html-minifier.conf
+	slimrb $(word 2, $^) /dev/stdout $< %.html |\
+	html-minifier --config-file html-minifier.conf --output=$@
 
 %.frag.html: %.md
 	pandoc $< -f markdown -t html5 -o $@
@@ -28,7 +20,6 @@ style.css: $(styl)
 	stylus -c |\
 	cleancss -O2 >$@
 
-.PRECIOUS: %.max.html %.plain.html %.frag.html %.css
 .DEFAULT_GOAL := all
 
 .PHONY: help
