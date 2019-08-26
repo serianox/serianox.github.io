@@ -6,7 +6,7 @@ rm "$tmpfile"
 
 (<"$1" sed '/<!-- TOC -->/q'
 
-for fname in `find * -name "*.md"`; do
+for fname in `find * -path 'node_modules' -prune -o -type f -name '*.md' -print`; do
     echo \
 `git log --follow --format=%ai $fname | tail -n1 | cut -f1 -d" "`\
 " "\

@@ -1,4 +1,4 @@
-md = $(shell find . -type f -name '*.md')
+md = $(shell find * -path 'node_modules' -prune -o -type f -name '*.md' -print)
 html = $(patsubst %.md, %.html, $(md))
 
 styl = $(shell find . -type f -name '*.styl')
@@ -7,7 +7,7 @@ all: $(html) style.css ## Build all the files
 
 %.html: %.frag.html template.slim html-minifier.conf
 	slimrb $(word 2, $^) /dev/stdout $< %.html |\
-	html-minifier --config-file html-minifier.conf --output=$@
+	`npm bin`/html-minifier --config-file html-minifier.conf --output=$@
 
 %.frag.html: %.md
 	pandoc $< -f markdown -t html5 -o $@
@@ -17,8 +17,8 @@ index.md: $(filter-out ./index.md, $(md))
 
 style.css: $(styl)
 	cat $^ |\
-	stylus -c |\
-	cleancss -O2 >$@
+	`npm bin`/stylus -c |\
+	`npm bin`/cleancss -O2 >$@
 
 .DEFAULT_GOAL := all
 
