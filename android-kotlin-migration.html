@@ -1,19 +1,19 @@
-<!doctype html><meta charset=utf-8><title>make</title><meta content="Thomas Duboucher" name=author><meta content="Thomas Duboucher, Serianox,blog" name=keywords><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name=viewport><link href=style.css rel=stylesheet><h1 id=manually-migrating-an-android-project-to-kotlin>Manually migrating an Android project to Kotlin</h1><p>Kotlin is now officialy <a href=https://developer.android.com/kotlin/index.html>Kotlin and Android</a>, and as such I wanted to give it another try. There are of course tutorials <a href=https://kotlinlang.org/docs/tutorials/kotlin-android.html>out there</a>, but they all aim users of Android Studio. Let’s see how we can do without.<p>First things first, let’s add Kotlin to our build script. We need to add to the <code>build.gradle</code> of our application three things:<ul><li>the repository where Kotlin is found,<li>the dependency to the build tools for Kotlin,<li>the runtime dependencies for our project.</ul><div class=sourceCode id=cb1><pre class="sourceCode diff"><code class="sourceCode diff"><a class=sourceLine data-line-number=1 id=cb1-1>buildscript {</a>
-<a class=sourceLine data-line-number=2 id=cb1-2><span class=va>+    repositories {</span></a>
-<a class=sourceLine data-line-number=3 id=cb1-3><span class=va>+        jcenter()</span></a>
-<a class=sourceLine data-line-number=4 id=cb1-4><span class=va>+        mavenCentral()</span></a>
-<a class=sourceLine data-line-number=5 id=cb1-5><span class=va>+    }</span></a>
-<a class=sourceLine data-line-number=6 id=cb1-6><span class=va>+    dependencies {</span></a>
-<a class=sourceLine data-line-number=7 id=cb1-7><span class=va>+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.1.2"</span></a>
-<a class=sourceLine data-line-number=8 id=cb1-8><span class=va>+    }</span></a>
-<a class=sourceLine data-line-number=9 id=cb1-9><span class=va>+}</span></a>
-<a class=sourceLine data-line-number=10 id=cb1-10><span class=va>+</span></a>
-<a class=sourceLine data-line-number=11 id=cb1-11> apply plugin: 'com.android.application'</a>
-<a class=sourceLine data-line-number=12 id=cb1-12><span class=va>+apply plugin: 'kotlin-android'</span></a>
-<a class=sourceLine data-line-number=13 id=cb1-13><span class=va>+apply plugin: 'kotlin-android-extensions'</span></a></code></pre></div><div class=sourceCode id=cb2><pre class="sourceCode diff"><code class="sourceCode diff"><a class=sourceLine data-line-number=1 id=cb2-1> dependencies {</a>
-<a class=sourceLine data-line-number=2 id=cb2-2>     compile fileTree(dir: 'libs', include: ['*.jar'])</a>
-<a class=sourceLine data-line-number=3 id=cb2-3>     compile 'com.android.support:design:23.1.1'</a>
-<a class=sourceLine data-line-number=4 id=cb2-4><span class=va>+</span></a>
-<a class=sourceLine data-line-number=5 id=cb2-5><span class=va>+    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.1.2'</span></a>
-<a class=sourceLine data-line-number=6 id=cb2-6><span class=va>+    testCompile 'org.jetbrains.kotlin:kotlin-stdlib:1.1.2'</span></a>
-<a class=sourceLine data-line-number=7 id=cb2-7> }</a></code></pre></div><p>If we run our <code>gradlew</code> script, we can see that it is installing the Kotlkin toolchain, but that no Kotlin code is built. Of course, because there are none yet.<p>Kotlin developers provide an <a href=https://try.kotlinlang.org/ >online Java-to-Kotlkin transpiler</a>. It is far from perfect, but it is enough for beginers with an existing Java project. In our application source directory, we create the same architecture where we replace <code>src/main/java/&lt;package></code> with <code>src/main/kotlin/&lt;package></code>. We transpile all the <code>.java</code> files to <code>.kt</code> and we run again our <code>gradlew</code> script.<p>Voilà.
+<!doctype html><meta charset=utf-8><title>make</title><meta content="Thomas Duboucher" name=author><meta content="Thomas Duboucher, Serianox,blog" name=keywords><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name=viewport><link href=style.css rel=stylesheet><h1 id=manually-migrating-an-android-project-to-kotlin>Manually migrating an Android project to Kotlin</h1><p>Kotlin is now officialy <a href=https://developer.android.com/kotlin/index.html>Kotlin and Android</a>, and as such I wanted to give it another try. There are of course tutorials <a href=https://kotlinlang.org/docs/tutorials/kotlin-android.html>out there</a>, but they all aim users of Android Studio. Let’s see how we can do without.<p>First things first, let’s add Kotlin to our build script. We need to add to the <code>build.gradle</code> of our application three things:<ul><li>the repository where Kotlin is found,<li>the dependency to the build tools for Kotlin,<li>the runtime dependencies for our project.</ul><div class=sourceCode id=cb1><pre class="sourceCode diff"><code class="sourceCode diff"><a class=sourceLine id=cb1-1 title=1>buildscript {</a>
+<a class=sourceLine id=cb1-2 title=2><span class=va>+    repositories {</span></a>
+<a class=sourceLine id=cb1-3 title=3><span class=va>+        jcenter()</span></a>
+<a class=sourceLine id=cb1-4 title=4><span class=va>+        mavenCentral()</span></a>
+<a class=sourceLine id=cb1-5 title=5><span class=va>+    }</span></a>
+<a class=sourceLine id=cb1-6 title=6><span class=va>+    dependencies {</span></a>
+<a class=sourceLine id=cb1-7 title=7><span class=va>+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.1.2"</span></a>
+<a class=sourceLine id=cb1-8 title=8><span class=va>+    }</span></a>
+<a class=sourceLine id=cb1-9 title=9><span class=va>+}</span></a>
+<a class=sourceLine id=cb1-10 title=10><span class=va>+</span></a>
+<a class=sourceLine id=cb1-11 title=11> apply plugin: 'com.android.application'</a>
+<a class=sourceLine id=cb1-12 title=12><span class=va>+apply plugin: 'kotlin-android'</span></a>
+<a class=sourceLine id=cb1-13 title=13><span class=va>+apply plugin: 'kotlin-android-extensions'</span></a></code></pre></div><div class=sourceCode id=cb2><pre class="sourceCode diff"><code class="sourceCode diff"><a class=sourceLine id=cb2-1 title=1> dependencies {</a>
+<a class=sourceLine id=cb2-2 title=2>     compile fileTree(dir: 'libs', include: ['*.jar'])</a>
+<a class=sourceLine id=cb2-3 title=3>     compile 'com.android.support:design:23.1.1'</a>
+<a class=sourceLine id=cb2-4 title=4><span class=va>+</span></a>
+<a class=sourceLine id=cb2-5 title=5><span class=va>+    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.1.2'</span></a>
+<a class=sourceLine id=cb2-6 title=6><span class=va>+    testCompile 'org.jetbrains.kotlin:kotlin-stdlib:1.1.2'</span></a>
+<a class=sourceLine id=cb2-7 title=7> }</a></code></pre></div><p>If we run our <code>gradlew</code> script, we can see that it is installing the Kotlkin toolchain, but that no Kotlin code is built. Of course, because there are none yet.<p>Kotlin developers provide an <a href=https://try.kotlinlang.org/ >online Java-to-Kotlkin transpiler</a>. It is far from perfect, but it is enough for beginers with an existing Java project. In our application source directory, we create the same architecture where we replace <code>src/main/java/&lt;package></code> with <code>src/main/kotlin/&lt;package></code>. We transpile all the <code>.java</code> files to <code>.kt</code> and we run again our <code>gradlew</code> script.<p>Voilà.
