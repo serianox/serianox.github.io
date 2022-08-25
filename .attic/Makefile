@@ -12,7 +12,7 @@ all: $(html) style.css ## Build all the files
 %.frag.html: %.md
 	pandoc $< -f markdown -t html5 -o $@
 
-index.md: $(filter-out ./index.md, $(md))
+index.md: $(filter-out index.md, $(md))
 	./tocify.sh $@
 
 style.css: $(styl)
